@@ -11,7 +11,7 @@ namespace DataGrid
     {
         public int Id { get; set; }
         private string name;
-
+        private string image;
         public string Name
         {
             get { return this.name; }
@@ -24,7 +24,18 @@ namespace DataGrid
                 }
             }
         }
-        public string ImageUrl { get; set; }
+        public string ImageUrl
+        {
+            get { return this.image; }
+            set
+            {
+                if (this.image != value)
+                {
+                    this.image = value;
+                    this.NotifyPropertyChanged("ImageUrl");
+                }
+            }
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
         public void NotifyPropertyChanged(string propName)
