@@ -47,7 +47,7 @@ namespace DataGrid
                 {
                     var userView = (dgSimple.SelectedItem as UserVM);
                     userView.Name = "Kate";
-                    userView.ImageUrl = "https://www.google.com/imgres?imgurl=https%3A%2F%2Fwallpapershome.ru%2Fimages%2Fpages%2Fpic_v%2F21488.jpg&imgrefurl=https%3A%2F%2Fwallpapershome.ru%2Ffoto%2Fkartinki-pro-lyubov-21488.html&tbnid=zsDlj02lFdxyNM&vet=12ahUKEwiskrKw4fXkAhXEcZoKHX8uAF8QMygCegQIARAa..i&docid=dIRm2TseLRMFUM&w=640&h=1138&q=image%20%D1%84%D0%BE%D1%82%D0%BE&ved=2ahUKEwiskrKw4fXkAhXEcZoKHX8uAF8QMygCegQIARAa.jpg";
+                    userView.ImageUrl = "https://wallpapershome.ru/images/pages/pic_h/14851.jpg";
                 }
             }
         }
