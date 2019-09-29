@@ -8,7 +8,7 @@
         Title="MainWindow" Height="450" Width="800">
     <DockPanel Margin="10">
         <StackPanel DockPanel.Dock="Right" Margin="10,0,0,0">
-            <Button Name="btnAddUser">Add user</Button>
+            <Button Name="btnAddUser" Click="BtnAddUser_Click">Add user</Button>
         </StackPanel>
         <DataGrid Name="dgSimple" AutoGenerateColumns="false">
             <DataGrid.Columns>

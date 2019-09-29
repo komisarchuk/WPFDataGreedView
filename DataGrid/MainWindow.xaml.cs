@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,7 +21,7 @@ namespace DataGrid
     /// </summary>
     public partial class MainWindow : Window
     {
-        private List<UserVM> _users = new List<UserVM>();
+        private ObservableCollection<UserVM> _users = new ObservableCollection<UserVM>();
         public MainWindow()
         {
             InitializeComponent();
@@ -30,6 +31,11 @@ namespace DataGrid
                 Name = "John Doe"
             });
             dgSimple.ItemsSource = _users;
+        }
+
+        private void BtnAddUser_Click(object sender, RoutedEventArgs e)
+        {
+            _users.Add(new UserVM() { Name = "New user" });
         }
     }
 }
