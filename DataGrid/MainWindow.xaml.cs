@@ -20,9 +20,16 @@ namespace DataGrid
     /// </summary>
     public partial class MainWindow : Window
     {
+        private List<UserVM> _users = new List<UserVM>();
         public MainWindow()
         {
             InitializeComponent();
+            _users.Add(new UserVM()
+            {
+                Id = 1,
+                Name = "John Doe"
+            });
+            dgSimple.ItemsSource = _users;
         }
     }
 }
