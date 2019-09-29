@@ -37,7 +37,7 @@ namespace DataGrid
         private void BtnAddUser_Click(object sender, RoutedEventArgs e)
         {
             _users.Add(new UserVM() { Name = "New user" });
-        }
+        }  
 
         private void BtnChangeUser_Click(object sender, RoutedEventArgs e)
         {
