@@ -28,7 +28,8 @@ namespace DataGrid
             _users.Add(new UserVM()
             {
                 Id = 1,
-                Name = "John Doe"
+                Name = "John Doe",
+                ImageUrl= "http://www.hawthorngroup.com/wp-content/uploads/2019/03/john-1-300x300.jpg"
             });
             dgSimple.ItemsSource = _users;
         }

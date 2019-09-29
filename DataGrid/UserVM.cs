@@ -24,6 +24,8 @@ namespace DataGrid
                 }
             }
         }
+        public string ImageUrl { get; set; }
+
         public event PropertyChangedEventHandler PropertyChanged;
         public void NotifyPropertyChanged(string propName)
         {
