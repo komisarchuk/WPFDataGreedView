@@ -47,7 +47,7 @@ namespace DataGrid
                 {
                     var userView = (dgSimple.SelectedItem as UserVM);
                     userView.Name = "Kate";
-                    userView.ImageUrl = "https://wallpapershome.ru/images/pages/pic_h/14851.jpg";
+                    userView.ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Katherine_Schwarzenegger_World_Dog_Awards_2015_%28cropped%29.jpg/653px-Katherine_Schwarzenegger_World_Dog_Awards_2015_%28cropped%29.jpg";
                 }
             }
         }
