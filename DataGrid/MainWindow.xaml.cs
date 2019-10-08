@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data.Entity;
+using System.Data.Entity.Core.Objects;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -32,41 +33,12 @@ namespace DataGrid
         public MainWindow()
         {
             InitializeComponent();
-
-            var _people = from p in _context.People
-                          select new
-                          {
-                              id = p.Id,
-                              name = p.Name,
-                              photo = p.Photo,
-                              sex = p.Sex
-                          };
-            dgSimple.ItemsSource = _people.ToList();
-
-            //_users.Add(new UserVM()
-            //{
-            //    Id = 1,
-            //    Name = "John Doe",
-            //    ImageUrl = "http://www.hawthorngroup.com/wp-content/uploads/2019/03/john-1-300x300.jpg"
-            //});
-            //dgSimple.ItemsSource = _users;
         }
-        public class ObservableListSource<T> : ObservableCollection<T>, IListSource
-                    where T : class
-        {
-            private IBindingList _bindingList;
 
-            bool IListSource.ContainsListCollection { get { return false; } }
-
-            IList IListSource.GetList()
-            {
-                return _bindingList ?? (_bindingList = this.ToBindingList());
-            }
-        }
         private void BtnAddUser_Click(object sender, RoutedEventArgs e)
         {
             _users.Add(new UserVM() { Name = "New user" });
-        }  
+        }
 
         private void BtnChangeUser_Click(object sender, RoutedEventArgs e)
         {
@@ -80,10 +52,58 @@ namespace DataGrid
                 }
             }
         }
-
-        private void DgSimple_Loaded(object sender, RoutedEventArgs e)
+         private void DgSimple_Loaded(object sender, RoutedEventArgs e)
         {
-           
+            var _people = from p in _context.People
+                          select new 
+                          {
+                              Id = p.Id,
+                              Name = p.Name,
+                              Photo = p.Photo
+                              //sex = p.Sex
+                          };
+            dgSimple.ItemsSource = _people.ToList();
+        }
+    }
+    public class User : INotifyPropertyChanged
+    {
+        private string _name;
+        private bool _sex;
+      
+        public string Name
+        {
+            get { return this._name; }
+            set
+            {
+                if (this._name != value)
+                {
+                    this._name = value;
+                    this.NotifyPropertyChanged("Name");
+                }
+            }
+        }
+
+        public bool Sex
+        {
+            get { return this._sex; }
+            set
+            {
+                if (this._sex != value)
+                {
+                    this._sex = value;
+                    this.NotifyPropertyChanged("Sex");
+                }
+            }
+        }
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public void NotifyPropertyChanged(string propName)
+        {
+            if (this.PropertyChanged != null)
+            {
+                if (propName == "Name" || propName == "Sex")
+                    this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
+            }
         }
     }
 }
