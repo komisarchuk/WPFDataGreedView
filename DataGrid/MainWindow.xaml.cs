@@ -9,6 +9,7 @@ using System.Data.Entity.Core.Objects;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.UI.WebControls;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -18,8 +19,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
-
+using RadioButton = System.Windows.Controls.RadioButton;
 
 namespace DataGrid
 {
@@ -28,16 +28,14 @@ namespace DataGrid
     /// </summary>
     public partial class MainWindow : Window
     {
-        private ObservableCollection<UserVM> _users = new ObservableCollection<UserVM>();
+        private ObservableCollection<Person> people = new ObservableCollection<Person>();
         EFContext _context = new EFContext();
+        public RadioButton rbMale = new RadioButton();
+        public RadioButton rbFemale = new RadioButton();
+
         public MainWindow()
         {
             InitializeComponent();
-        }
-
-        private void BtnAddUser_Click(object sender, RoutedEventArgs e)
-        {
-            _users.Add(new UserVM() { Name = "New user" });
         }
 
         private void BtnChangeUser_Click(object sender, RoutedEventArgs e)
@@ -52,19 +50,39 @@ namespace DataGrid
                 }
             }
         }
-         private void DgSimple_Loaded(object sender, RoutedEventArgs e)
+        private void DgSimple_Loaded(object sender, RoutedEventArgs e)
         {
             var _people = from p in _context.People
                           select new 
                           {
                               Id = p.Id,
                               Name = p.Name,
-                              Photo = p.Photo
-                              //sex = p.Sex
+                              Photo = p.Photo,
+                              Sex = p.Sex
                           };
             dgSimple.ItemsSource = _people.ToList();
+  
+            foreach (var _person in _people)
+            {
+                if (_person.Sex)
+                {
+                    rbMale.IsChecked = true;
+                    rbFemale.IsChecked = false;
+                }
+                else
+                {
+                    rbFemale.IsChecked = true;
+                    rbMale.IsChecked = false;
+                }
+            }
+
         }
+
+   
+       
     }
+
+
     public class User : INotifyPropertyChanged
     {
         private string _name;
